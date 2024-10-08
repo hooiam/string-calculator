@@ -9,12 +9,12 @@ export const add = function (numbers: string): number {
   if (numbers === "") return 0;
 
   let numStr = numbers;
-  let delimiter: RegExp = /,|\n/; // delimiter either comma or new line by default
+  let delimiter = /,|\n/; // delimiter either comma or new line by default
 
   // If there is different delimiter
   if (numbers.startsWith("//")) {
     const indexOfNewLine = numbers.indexOf("\n");
-    delimiter = new RegExp(`[${numbers[2]}]`); 
+    delimiter =  new RegExp(`[/,|\n|${numbers[2]}/]`)
     numStr = numbers.slice(indexOfNewLine + 1); 
   }
 

@@ -22,9 +22,14 @@ describe('String Calculator', () => {
     expect(add("1\n2,3")).toBe(6);
     expect(add("1\n2\n3")).toBe(6);
     expect(add("1,2\n3")).toBe(6);
+    expect(add("\n1,2\n3")).toBe(6);
   });
 
   test('#6 should support different delimiters', () => {
     expect(add("//;\n1;2")).toBe(3);
+    expect(add("//;\n1;2;3;4")).toBe(10);
+    expect(add("//;\n1;2\n3;4")).toBe(10);
+    expect(add("//;\n1;2\n3\n4")).toBe(10);
+    expect(add("//_\n1_2\n3\n4")).toBe(10);
   });
 });
