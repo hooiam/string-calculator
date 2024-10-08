@@ -4,15 +4,22 @@
  * @returns {Number} 
  */
 
-export const add = function(numbers: string): number {
+export const add = function (numbers: string): number {
   // Return if the string is empty
   if (numbers === "") return 0;
 
   let numStr = numbers;
-  let deliminator = /,|\n/;
+  let delimiter: RegExp = /,|\n/; // delimiter either comma or new line by default
+
+  // If there is different delimiter
+  if (numbers.startsWith("//")) {
+    const indexOfNewLine = numbers.indexOf("\n");
+    delimiter = new RegExp(`[${numbers[2]}]`); 
+    numStr = numbers.slice(indexOfNewLine + 1); 
+  }
 
   // Split the string using the delimiters
-  const numArr = numStr.split(deliminator);
+  const numArr = numStr.split(delimiter);
 
   return numArr.reduce((sum, num) => sum + +num, 0);
 };
