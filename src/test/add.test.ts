@@ -41,4 +41,20 @@ describe('String Calculator', () => {
     expect(() => add("1,-2,-3,4")).toThrow("Negative numbers not allowed: -2, -3");
   });
 
+  test('#9 should throw an error listing all negative numbers with different delimiter', () => {
+    expect(() => add("//;\n1;-2;-3;4")).toThrow("Negative numbers not allowed: -2, -3");
+  });
+
+  // EDGE CASE
+  test('#10 should return 0 for strings containing only delimiters', () => {
+    expect(add(",,")).toBe(0);
+    expect(add("\n\n")).toBe(0);
+  });
+
+  // EDGE CASE
+  test('#11 should handle no numbers between delimiters', () => {
+    expect(add("1,,2")).toBe(3);
+    expect(add("1\n\n2")).toBe(3);
+  });
+
 });
