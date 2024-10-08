@@ -25,7 +25,7 @@ export const add = function (numbers: string): number {
   const negativeNumbers: number[] = mappedNumArr.filter(n => n < 0);
 
   if (negativeNumbers.length > 0) {
-      throw new Error(`Negative numbers not allowed: ${negativeNumbers}`);
+      throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(", ")}`);
   }
 
   return mappedNumArr.reduce((sum, num) => sum + num, 0);
