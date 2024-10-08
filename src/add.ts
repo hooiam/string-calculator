@@ -5,11 +5,13 @@
  */
 
 export const add = function(numbers: string): number {
-  if (numbers === "") return 0; // Test case # 1
+  // Return if the string is empty
+  if (numbers === "") return 0;
 
   let numStr = numbers;
   let deliminator = /,|\n/;
 
+  // Split the string using the delimiters
   const numArr = numStr.split(deliminator);
 
   return numArr.reduce((sum, num) => sum + +num, 0);
