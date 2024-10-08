@@ -32,4 +32,8 @@ describe('String Calculator', () => {
     expect(add("//;\n1;2\n3\n4")).toBe(10);
     expect(add("//_\n1_2\n3\n4")).toBe(10);
   });
+
+  test('#7 should throw an error when a negative number is passed', () => {
+    expect(add("1,-2")).toThrow("Negative numbers not allowed: -2");
+  });
 });
