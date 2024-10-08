@@ -8,8 +8,8 @@ export const add = function (numbers: string): number {
   // Return if the string is empty
   if (numbers === "") return 0;
 
-  let numStr = numbers;
-  let delimiter = /,|\n/; // delimiter either comma or new line by default
+  let numStr: string = numbers;
+  let delimiter: RegExp = /,|\n/; // delimiter either comma or new line by default
 
   // If there is different delimiter
   if (numbers.startsWith("//")) {
@@ -19,7 +19,14 @@ export const add = function (numbers: string): number {
   }
 
   // Split the string using the delimiters
-  const numArr = numStr.split(delimiter);
+  const numArr: string[] = numStr.split(delimiter);
 
-  return numArr.reduce((sum, num) => sum + +num, 0);
+  const mappedNumArr: number[] = numArr.map(Number);
+  const negativeNumbers: number[] = mappedNumArr.filter(n => n < 0);
+
+  if (negativeNumbers.length > 0) {
+      throw new Error(`Negative numbers not allowed: ${negativeNumbers}`);
+  }
+
+  return mappedNumArr.reduce((sum, num) => sum + num, 0);
 };
