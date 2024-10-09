@@ -10,7 +10,7 @@ const showResult = document.getElementById("showResult") as HTMLOutputElement;
 form.addEventListener("submit", (event) => {
   try {
     event.preventDefault();
-    showResult.textContent = add(numbers.value).toString();
+    showResult.textContent = add(numbers.value.replace(/\\n/g, '\n')).toString();
     numbers.value = "";
   } catch (error: any) {
     numbers.value = "";
