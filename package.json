@@ -6,7 +6,10 @@
   "scripts": {
     "start": "http-server",
     "build": "webpack --config webpack.config.js",
-    "test": "jest src/test/*.test.ts"  
+    "test": "jest src/test/*.test.ts",
+    "deploy:index": "aws s3 cp index.html s3://string-calculator",
+    "deploy:dist": "aws s3 sync dist s3://string-calculator/dist",
+    "deploy": "npm i && npm run build && npm run deploy:index && npm run deploy:dist"
   },
   "author": "",
   "license": "ISC",
