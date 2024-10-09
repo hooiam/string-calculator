@@ -57,4 +57,19 @@ describe('String Calculator', () => {
     expect(add("1\n\n2")).toBe(3);
   });
 
+  // EDGE CASE
+  test('#12 should throw an error wrong numbers', () => {
+    expect(() => add("asdfsfdsdfsdf")).toThrow("Wrong numbers 😠");
+  });
+  
+  // EDGE CASE
+  test('#13 should support special delimiters like +, -, *, /', () => {
+    expect(add("//+\n1+2")).toBe(3);
+    expect(add("//-\n1-2")).toBe(3);
+    expect(add("///\n1/2")).toBe(3);
+    expect(add("//*\n1*2")).toBe(3);
+    expect(add("//*\n1\n2")).toBe(3);
+    expect(add("//*\n1\n2")).toBe(3);
+  });
+  
 });

@@ -14,7 +14,8 @@ export const add = function (numbers: string): number {
   // If there is different delimiter
   if (numbers.startsWith("//")) {
     const indexOfNewLine = numbers.indexOf("\n");
-    delimiter =  new RegExp(`[/,|\n|${numbers[2]}/]`)
+    const escapedDelimiter = numbers[2].replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    delimiter =  new RegExp(`[/,|\n|${escapedDelimiter}/]`)
     numStr = numbers.slice(indexOfNewLine + 1); 
   }
 
@@ -28,5 +29,9 @@ export const add = function (numbers: string): number {
       throw new Error(`Negative numbers not allowed: ${negativeNumbers.join(", ")}`);
   }
 
-  return mappedNumArr.reduce((sum, num) => sum + num, 0);
+  let result = mappedNumArr.reduce((sum, num) => sum + num, 0);
+
+  if(isNaN(result)) throw new Error(`Wrong numbers 😠`); // Edge case validation
+
+  return result;
 };
